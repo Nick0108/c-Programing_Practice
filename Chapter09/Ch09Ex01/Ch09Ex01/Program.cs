@@ -13,6 +13,9 @@ namespace Ch09Ex01
     internal interface IMyBaseInterface2 { }
     internal interface IMyInterface : IMyBaseInterface, IMyBaseInterface2 { }
     internal sealed class MyComplexClass : Myclass, IMyInterface { }
+    /// <summary>
+    /// This class contains my program!
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
