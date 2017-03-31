@@ -16,7 +16,7 @@ namespace Ch11CardLib
 
         private Card()
         {
-            
+
         }
 
         public Card(Suit newSuit, Rank newRank)
@@ -44,7 +44,7 @@ namespace Ch11CardLib
         }
         public override int GetHashCode()
         {
-            return 13 * (int)suit +(int)rank;
+            return 13 * (int)suit + (int)rank;
         }
         public static bool operator >(Card card1, Card card2)
         {
@@ -52,7 +52,7 @@ namespace Ch11CardLib
             {
                 if (isAceHigh)
                 {
-                    if(card1.rank == Rank.Ace)
+                    if (card1.rank == Rank.Ace)
                     {
                         if (card2.rank == Rank.Ace)
                             return false;
@@ -80,9 +80,42 @@ namespace Ch11CardLib
                     return true;
             }
         }
-        public static bool operator <(Card card1, Card card2)
+        public static bool operator < (Card card1, Card card2)
         {
-            return !()
+            return !(card1 >= card2);
+        }
+        public static bool operator >= (Card card1, Card card2)
+        {
+            if (card1.suit == card2.suit)
+            {
+                if (isAceHigh)
+                {
+                    if (card1.rank == Rank.Ace)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        if (card2.rank == Rank.Ace)
+                            return false;
+                        else
+                            return (card1.rank >= card2.rank);
+                    }
+                }
+                else
+                    return (card1.rank >= card2.rank);
+            }
+            else
+            {
+                if (useTrumps && (card2.suit == Card.trump))
+                    return false;
+                else
+                    return true;
+            }
+        }
+        public static bool operator <=(Card card1, Card card2)
+        {
+            return !(card1 > card2);
         }
     }
 }
