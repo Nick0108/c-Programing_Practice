@@ -55,5 +55,19 @@ namespace Ch12Ex01
             string thetaString = Theta.HasValue ? Theta.ToString() : "null";
             return string.Format($"({rString}, {thetaString})");
         }
+        public static double? operator * (Vector op1, Vector op2)
+        {
+            try
+            {
+                double newVectorNum = op1.R.Value * op2.R.Value;
+                double newVectorTheta = (double)(op1.ThetaRadians.Value - op2.ThetaRadians.Value);
+                double newVector = newVectorNum * Math.Cos(newVectorTheta);
+                return newVector;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }
